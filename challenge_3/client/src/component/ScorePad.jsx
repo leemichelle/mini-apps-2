@@ -19,7 +19,10 @@ class ScorePad extends React.Component {
     }
   }
 
-  keepScore() {
+  keepScore(e) {
+    e.preventDefault();
+    // clickedNum = 10 - Number.parseInt(e.target.name)
+     // 
   }
 
   render() {
