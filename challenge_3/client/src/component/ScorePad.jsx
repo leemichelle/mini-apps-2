@@ -1,5 +1,6 @@
 import React from 'react';
 // import style from './styles.css';
+import Score from './Score.jsx';
 
 class ScorePad extends React.Component {
   constructor(props) {
@@ -16,51 +17,61 @@ class ScorePad extends React.Component {
       nine: false,
       ten: false,
       keypad: 'red',
+      clickedNum: '',
+      sum: 0
     }
+    this.keepScore = this.keepScore.bind(this);
   }
 
   keepScore(e) {
     e.preventDefault();
-    // clickedNum = 10 - Number.parseInt(e.target.name)
-     // 
+    let limit = 10 - Number.parseInt(e.target.name);
+    
+    this.setState({
+      clickedNum: Number.parseInt(e.target.name),
+      sum: this.state.sum += Number.parseInt(e.target.name)
+    })
+    e.target.style.backgroundColor = '#ACA4A4'
   }
 
   render() {
     return (
       <div className='keypad'>
-        <button name="1" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="1" style={{backgroundColor: this.state.keypad}}>
           1{this.state.one}
         </button>
-        <button name="2" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="2" style={{backgroundColor: this.state.keypad}}>
           2{this.state.two}
         </button>
-        <button name="3" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="3" style={{backgroundColor: this.state.keypad}}>
           3{this.state.three}
         </button>
         <br />
-        <button name="4" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="4" style={{backgroundColor: this.state.keypad}}>
           4{this.state.four}
         </button>
-        <button name="5" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="5" style={{backgroundColor: this.state.keypad}}>
           5{this.state.five}
         </button>
-        <button name="6" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="6" style={{backgroundColor: this.state.keypad}}>
           6{this.state.six}
         </button>
         <br />
-        <button name="7" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="7" style={{backgroundColor: this.state.keypad}}>
           7{this.state.seven}
         </button>
-        <button name="8" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="8" style={{backgroundColor: this.state.keypad}}>
           8{this.state.eight}
         </button>
-        <button name="9" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="9" style={{backgroundColor: this.state.keypad}}>
           9{this.state.nine}
         </button>
         <br />
-        <button name="10" style={{color: this.state.keypad}}>
+        <button onClick={(e) => this.keepScore(e)} name="10" style={{backgroundColor: this.state.keypad}}>
           10{this.state.ten}
         </button>
+        <div>Clicked: {this.state.clickedNum} </div>
+        <Score score={this.state.sum} />
       </div>
     )
   }
